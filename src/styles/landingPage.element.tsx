@@ -134,7 +134,7 @@ export const SectionContainer = Styled.div`
           }
 
           @media screen and (max-width: 720px){
-            transform: translate(-50%, -20%);
+            transform: translate(-50%, -30%);
           }
       }
     }

@@ -89,11 +89,11 @@ export const ContentWrapper = Styled.div`
           transform: translateY(-200%);
         }
         ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-          transform: translateY(430%);
+          transform: translateY(410%);
         }
       }
 
-      @media screen and (min-height: 880px){
+      @media screen and (min-height: 800px){
         ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
           transform: translateY(-230%);
         }
