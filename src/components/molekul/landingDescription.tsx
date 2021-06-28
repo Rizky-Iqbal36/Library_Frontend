@@ -1,4 +1,5 @@
-import React, { useState, RefObject } from "react";
+// import React, { useState, RefObject } from "react";
+import React, { RefObject } from "react";
 import {
   DescriptionContainer,
   DescriptionWrapper,
@@ -23,12 +24,10 @@ const LandingDescription: React.FC<ILandingPage> = ({
   scrollToSignIn,
   containerDiv,
 }) => {
-  const [count, setCount] = useState(0);
-
-  const [screenWidth, setScreenWidth] = useState(window.screen.width);
-  window.onresize = () => {
-    setScreenWidth(window.screen.width);
-  };
+  // const [screenWidth, setScreenWidth] = useState(window.screen.width);
+  // window.onresize = () => {
+  //   setScreenWidth(window.screen.width);
+  // };
 
   const SignUpMode = () => {
     containerDiv.current?.classList.remove("sign-in-mode");
@@ -52,10 +51,9 @@ const LandingDescription: React.FC<ILandingPage> = ({
           <OrdinaryButton
             onClick={() => {
               SignInMode();
-              if (screenWidth <= 720) {
-                setCount(count + 1);
-                scrollToSignUp();
-              }
+              // if (screenWidth <= 720) {
+              //   scrollToSignUp();
+              // }
             }}
           >
             Sign In
@@ -75,10 +73,9 @@ const LandingDescription: React.FC<ILandingPage> = ({
           <OrdinaryButton
             onClick={() => {
               SignUpMode();
-              if (screenWidth <= 720) {
-                setCount(count + 1);
-                scrollToSignIn();
-              }
+              // if (screenWidth <= 720) {
+              //   scrollToSignIn();
+              // }
             }}
           >
             Sign Up

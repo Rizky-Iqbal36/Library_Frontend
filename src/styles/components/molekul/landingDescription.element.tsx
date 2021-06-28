@@ -9,8 +9,8 @@ export const DescriptionWrapper = Styled.div`
     justify-content: center;
     align-items:center;
     z-index: 1;
-    transform: translateY(10%);
     width:100%;
+    height: 100%;
 
     @media screen and (max-width: 720px){
       flex-direction: column;
@@ -36,6 +36,7 @@ export const ContentWrapper = Styled.div`
     align-items: center;
     color: #fff;
     transition: all 0.75s ease-in-out;
+    margin: 10px 0px;
 
     ${Container}.sign-up-mode ${DescriptionContainer}.sign-up &{
       opacity: 0;
@@ -43,6 +44,9 @@ export const ContentWrapper = Styled.div`
       pointer-events: none;
       visibility: hidden;
 
+      @media screen and (max-width: 992px){
+          transform: translate(100%,-15%);
+      }
       @media screen and (max-width: 720px){
         transform: translateY(-800%);
       }
@@ -54,21 +58,48 @@ export const ContentWrapper = Styled.div`
         pointer-events: none;
         visibility: hidden;
 
-        @media screen and (max-width: 720px){
-          transform: translateY(100%);
+        @media screen and (max-width: 992px){
+          transform: translate(-100%,10%);
         }
-
+        
         @media screen and (max-width: 720px){
-        transform: translateY(1000%);
+          transform: translateY(1030%);
+        }
+    }
+
+    @media screen and (max-width: 992px){
+      ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
+        transform: translateY(-15%);
+      }
+      ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
+        transform: translateY(10%);
       }
     }
 
     @media screen and (max-width: 720px){
       ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
-        transform: translateY(-100%);
+        transform: translateY(-170%);
       }
       ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-        transform: translateY(275%);
+        transform: translateY(400%);
+      }
+
+      @media screen and (min-height: 720px){
+        ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
+          transform: translateY(-200%);
+        }
+        ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
+          transform: translateY(430%);
+        }
+      }
+
+      @media screen and (min-height: 880px){
+        ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
+          transform: translateY(-230%);
+        }
+        ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
+          transform: translateY(380%);
+        }
       }
     }
 `;
@@ -93,7 +124,6 @@ export const DescriptionP = Styled.p`
 `;
 
 export const ImgBox = Styled.div`
-    position: absolute;
     z-index: 1000;
     width: 100%;
     display: flex;
@@ -102,13 +132,16 @@ export const ImgBox = Styled.div`
     /* transform: translate(125px, 40px); */
     transition: all 0.75s ease-in-out;
     transition-delay: 0.2s;
-    top: 120%;
 
     ${Container}.sign-up-mode ${DescriptionContainer}.sign-up &{
       opacity: 0;
       transform: translateX(100%);
       pointer-events: none;
       visibility: hidden;
+
+      @media screen and (max-width: 992px){
+        transform: translate(100%,-10%);
+      }
     }
 
     ${Container}.sign-in-mode ${DescriptionContainer}.sign-in &{
@@ -116,19 +149,26 @@ export const ImgBox = Styled.div`
       transform: translateX(-100%);
       pointer-events: none;
       visibility: hidden;
+
+      @media screen and (max-width: 992px){
+        transform: translate(-100%,10%);
+      }
+    }
+
+    @media screen and (max-width: 992px){
+      ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
+        transform: translateY(-10%);
+      }
+      ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
+        transform: translateY(10%);
+      }
     }
 `;
 
 export const Image = Styled.img`
-    width: 35%;
+    width: 75%;
     height: auto;
-    position: absolute;
-    top: 120%;
     transition: all 0.75s ease-in-out;
-
-    @media screen and (max-width: 992px){
-      width: 40%;
-    }
 
     @media screen and (max-width: 720px){
       opacity: 0;

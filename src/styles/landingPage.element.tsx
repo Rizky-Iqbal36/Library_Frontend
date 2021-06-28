@@ -36,13 +36,22 @@ export const Container = Styled.div`
     }
 
     @media screen and (max-width: 720px){
-      min-height: 125vh;
       :before {
-        clip-path: circle(400px at 50% -25%);
+        clip-path: circle(400px at 50% -35%);
       }
 
       &.sign-up-mode:before{
-        clip-path: circle(400px at 50% 125%);
+        clip-path: circle(400px at 50% 135%);
+      }
+
+      @media screen and (min-height: 720px){
+        :before {
+          clip-path: circle(400px at 50% -20%);
+        }
+
+        &.sign-up-mode:before{
+          clip-path: circle(400px at 50% 120%);
+        }
       }
     }
 `;
@@ -97,7 +106,7 @@ export const SectionContainer = Styled.div`
           }
 
           @media screen and (max-width: 720px){
-            transform: translate(-50%, -100%);
+            transform: translate(-50%, -150%);
           }
         }
     }
@@ -113,7 +122,7 @@ export const SectionContainer = Styled.div`
         }
 
         @media screen and (max-width: 720px){
-          transform: translate(50%, 100%);
+          transform: translate(50%, 150%);
         }
       }
         &:nth-child(2){
@@ -125,7 +134,7 @@ export const SectionContainer = Styled.div`
           }
 
           @media screen and (max-width: 720px){
-            transform: translate(-50%, -25%);
+            transform: translate(-50%, -20%);
           }
       }
     }
