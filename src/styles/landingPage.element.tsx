@@ -46,13 +46,13 @@ export const Container = Styled.div`
         clip-path: circle(400px at 50% -35%);
       }
 
-      @media screen and (min-height: 720px){
+      @media screen and (min-height: 860px){
         :before {
-          clip-path: circle(400px at 50% 120%);
+          clip-path: circle(500px at 50% 130%);
         }
 
         &.sign-up-mode:before{
-          clip-path: circle(400px at 50% -20%);
+          clip-path: circle(500px at 50% -30%);
         }
       }
     }
