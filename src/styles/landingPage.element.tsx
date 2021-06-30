@@ -6,6 +6,8 @@ export const Container = Styled.div`
     background-color:#25274D ;
     min-height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 
     :before {

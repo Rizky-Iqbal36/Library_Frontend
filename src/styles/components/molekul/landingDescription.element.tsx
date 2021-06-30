@@ -1,5 +1,6 @@
 import Styled from "styled-components";
 import { Container } from "@root/styles/landingPage.element";
+import { FormSectionWrapper } from "@styles/components/molekul/form.element";
 
 export const DescriptionWrapper = Styled.div`
     top: 0;
@@ -27,6 +28,18 @@ export const DescriptionContainer = Styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 3;
+    transition: all 0.75s ease-in-out;
+    
+    @media screen and (max-width: 992px){
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
+        transform: translateY(30%);
+      }
+
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(-110%,30%);
+      }
+    }
 `;
 
 export const ContentWrapper = Styled.div`
@@ -35,72 +48,21 @@ export const ContentWrapper = Styled.div`
     justify-content: center;
     align-items: center;
     color: #fff;
-    transition: all 0.75s ease-in-out;
     margin: 10px 0px;
+    transition: all 0.75s ease-in-out;
 
-    ${Container}.sign-up-mode ${DescriptionContainer}.sign-up &{
+    ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
       opacity: 0;
-      transform: translateX(100%);
       pointer-events: none;
       visibility: hidden;
-
-      @media screen and (max-width: 992px){
-          transform: translate(100%,-15%);
-      }
-      @media screen and (max-width: 720px){
-        transform: translateY(-800%);
-      }
+      transform: translateX(110%);
     }
 
-    ${Container}.sign-in-mode ${DescriptionContainer}.sign-in &{
-        opacity: 0;
-        transform: translateX(-100%);
-        pointer-events: none;
-        visibility: hidden;
-
-        @media screen and (max-width: 992px){
-          transform: translate(-100%,10%);
-        }
-        
-        @media screen and (max-width: 720px){
-          transform: translateY(1030%);
-        }
-    }
-
-    @media screen and (max-width: 992px){
-      ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
-        transform: translateY(-15%);
-      }
-      ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-        transform: translateY(10%);
-      }
-    }
-
-    @media screen and (max-width: 720px){
-      ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
-        transform: translateY(-170%);
-      }
-      ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-        transform: translateY(400%);
-      }
-
-      @media screen and (min-height: 720px){
-        ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
-          transform: translateY(-200%);
-        }
-        ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-          transform: translateY(410%);
-        }
-      }
-
-      @media screen and (min-height: 800px){
-        ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
-          transform: translateY(-230%);
-        }
-        ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-          transform: translateY(380%);
-        }
-      }
+    ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transform: translateX(-110%);
     }
 `;
 
@@ -116,62 +78,39 @@ export const DescriptionP = Styled.p`
   max-width: 450px;
   font-size: 15px;
   padding: 20px 0;
-
-  @media screen and (max-width: 720px){
-    font-size: 12px;
-    padding: 15px 0;
-  }
 `;
 
 export const ImgBox = Styled.div`
-    z-index: 1000;
+    z-index: 2;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* transform: translate(125px, 40px); */
     transition: all 0.75s ease-in-out;
     transition-delay: 0.2s;
 
-    ${Container}.sign-up-mode ${DescriptionContainer}.sign-up &{
+    ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
       opacity: 0;
-      transform: translateX(100%);
       pointer-events: none;
       visibility: hidden;
-
-      @media screen and (max-width: 992px){
-        transform: translate(100%,-10%);
-      }
+      transform: translateX(110%);
     }
 
-    ${Container}.sign-in-mode ${DescriptionContainer}.sign-in &{
+    ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
       opacity: 0;
-      transform: translateX(-100%);
       pointer-events: none;
       visibility: hidden;
-
-      @media screen and (max-width: 992px){
-        transform: translate(-100%,10%);
-      }
+      transform: translateX(-110%);
     }
 
-    @media screen and (max-width: 992px){
-      ${Container}.sign-in-mode ${DescriptionContainer}.sign-up &{
-        transform: translateY(-10%);
-      }
-      ${Container}.sign-up-mode ${DescriptionContainer}.sign-in &{
-        transform: translateY(10%);
-      }
+    @media screen and (max-width: 720px){
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 `;
 
 export const Image = Styled.img`
     width: 75%;
     height: auto;
-    transition: all 0.75s ease-in-out;
-
-    @media screen and (max-width: 720px){
-      opacity: 0;
-      pointer-events: none;
-    }
 `;

@@ -1,4 +1,44 @@
 import Styled from "styled-components";
+import { Container } from "@styles/landingPage.element";
+
+export const FormSectionWrapper = Styled.div`
+    position: absolute;
+`;
+
+export const FormContentWrapper = Styled.div`
+    top:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 992px){
+      flex-direction: column;
+    }
+`;
+
+export const AuthWrapper = Styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.75s ease-in-out;
+    transition-delay: 0.6s;
+
+    ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
+      transform: translateX(150%);
+      transition-delay: 0.5s;
+    }
+    
+    ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
+      transform: translateX(-150%);
+      transition-delay: 0.5s;
+    }
+`;
 
 export const AuthForm = Styled.form`
     top: 0;
