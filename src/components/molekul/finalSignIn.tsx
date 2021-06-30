@@ -1,4 +1,4 @@
-import React, { RefObject,useState } from "react";
+import React, { RefObject } from "react";
 import {
   FormSectionWrapper,
   FormContentWrapper,
@@ -40,19 +40,19 @@ const FinalSignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
     containerDiv.current?.classList.remove("sign-in-mode");
     containerDiv.current?.classList.add("sign-up-mode");
   };
-  const [screenWidth, setScreenWidth] = useState(window.screen.width);
-  const [screenHeight, setScreenHeigth] = useState(window.screen.height);
-  window.onresize = () => {
-    setScreenWidth(window.screen.width);
-    setScreenHeigth(window.screen.height)
-  };
+  // const [screenWidth, setScreenWidth] = useState(window.screen.width);
+  // const [screenHeight, setScreenHeigth] = useState(window.screen.height);
+  // window.onresize = () => {
+  //   setScreenWidth(window.screen.width);
+  //   setScreenHeigth(window.screen.height);
+  // };
   return (
     <FormSectionWrapper className="sign-in">
       <FormContentWrapper>
         <AuthWrapper>
           <AuthForm>
             <Title>Sign in</Title>
-            <h1>{`width: ${screenWidth} \n height: ${screenHeight}`}</h1>
+            {/* <h1>{`width: ${screenWidth} \n height: ${screenHeight}`}</h1> */}
             <InputField>
               <LogoInput>
                 <FaUser />

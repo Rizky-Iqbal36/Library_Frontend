@@ -51,7 +51,7 @@ export const DescriptionContainer = Styled.div`
 
     @media screen and (max-width: 720px){
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(0%,25%);
+        transform: translate(0%,-25%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
@@ -63,10 +63,10 @@ export const DescriptionContainer = Styled.div`
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(0%,45%);
+        transform: translate(0%,85%);
       }
 
-      @media screen and (min-height: 820px){
+      /* @media screen and (min-height: 820px){
         ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
           transform: translate(0%,-10%);
         }
@@ -74,7 +74,7 @@ export const DescriptionContainer = Styled.div`
         ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
           transform: translate(0%,65%);
         }
-      }
+      } */
     }
 `;
 

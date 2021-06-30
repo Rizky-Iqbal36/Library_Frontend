@@ -39,14 +39,14 @@ export const Container = Styled.div`
 
     @media screen and (max-width: 720px){
       :before {
-        clip-path: circle(400px at 50% 135%);
+        clip-path: circle(400px at 50% 125%);
       }
 
       &.sign-up-mode:before{
-        clip-path: circle(400px at 50% -35%);
+        clip-path: circle(400px at 50% -25%);
       }
 
-      @media screen and (min-height: 820px){
+      /* @media screen and (min-height: 820px){
         :before {
           clip-path: circle(500px at 50% 130%);
         }
@@ -54,7 +54,7 @@ export const Container = Styled.div`
         &.sign-up-mode:before{
           clip-path: circle(500px at 50% -30%);
         }
-      }
+      } */
     }
 `;
 export const FormWrapper = Styled.div`

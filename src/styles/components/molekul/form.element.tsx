@@ -63,7 +63,7 @@ export const AuthWrapper = Styled.div`
       }
 
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(0%,-75%);
+        transform: translate(0%,-175%);
         transition-delay: 0.45s;
       }
 
@@ -72,7 +72,7 @@ export const AuthWrapper = Styled.div`
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(0%,85%);
+        transform: translate(0%,185%);
       }
 
       @media screen and (min-height: 820px){
