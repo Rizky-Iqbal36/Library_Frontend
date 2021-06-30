@@ -28,7 +28,7 @@ export const DescriptionContainer = Styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 3;
+    z-index: 2;
     transition: all 0.75s ease-in-out;
     
     @media screen and (max-width: 992px){
@@ -55,11 +55,11 @@ export const DescriptionContainer = Styled.div`
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(0%,-75%);
+        transform: translate(0%,-175%);
       }
 
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(0%,145%);
+        transform: translate(0%,245%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{

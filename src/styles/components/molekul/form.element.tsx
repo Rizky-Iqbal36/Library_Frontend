@@ -89,7 +89,7 @@ export const AuthWrapper = Styled.div`
 
 export const AuthForm = Styled.form`
     top: 0;
-    z-index: 2;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
