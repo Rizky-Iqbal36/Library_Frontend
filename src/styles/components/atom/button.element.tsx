@@ -51,4 +51,13 @@ export const OrdinaryButton = Styled.div`
     background-color: transparent;
     transition: all 0.2s ease-in-out;
   }
+
+  @media screen and (max-width:992px){
+    width: 130px;
+    margin: 7px 0;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 550;
+    font-size: 0.95rem;
+  }
 `;

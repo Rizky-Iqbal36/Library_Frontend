@@ -38,6 +38,43 @@ export const AuthWrapper = Styled.div`
       transform: translateX(-150%);
       transition-delay: 0.5s;
     }
+
+    @media screen and (max-width: 992px){
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(29%,28%);
+      }
+
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(129%,28%);
+      }
+
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(-29%,-28%);
+      }
+
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(-129%,-28%);
+      }
+    }
+
+    @media screen and (max-width: 720px){
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(0%,25%);
+      }
+
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(0%,-75%);
+        transition-delay: 0.45s;
+      }
+
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(0%,-15%);
+      }
+
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(0%,85%);
+      }
+    }
 `;
 
 export const AuthForm = Styled.form`

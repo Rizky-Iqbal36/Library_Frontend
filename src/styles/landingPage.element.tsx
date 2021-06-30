@@ -29,30 +29,30 @@ export const Container = Styled.div`
 
     @media screen and (max-width: 992px){
       :before {
-        clip-path: circle(650px at 120% -30%);
+        clip-path: circle(650px at -20% 130%);
       }
 
       &.sign-up-mode:before{
-        clip-path: circle(650px at -20% 130%);
+        clip-path: circle(650px at 120% -30%);
       }
     }
 
     @media screen and (max-width: 720px){
       :before {
-        clip-path: circle(400px at 50% -35%);
+        clip-path: circle(400px at 50% 135%);
       }
 
       &.sign-up-mode:before{
-        clip-path: circle(400px at 50% 135%);
+        clip-path: circle(400px at 50% -35%);
       }
 
       @media screen and (min-height: 720px){
         :before {
-          clip-path: circle(400px at 50% -20%);
+          clip-path: circle(400px at 50% 120%);
         }
 
         &.sign-up-mode:before{
-          clip-path: circle(400px at 50% 120%);
+          clip-path: circle(400px at 50% -20%);
         }
       }
     }

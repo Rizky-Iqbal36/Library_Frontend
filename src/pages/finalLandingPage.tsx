@@ -4,16 +4,17 @@ import SignIn from "@components/molekul/finalSignIn";
 import SignUp from "@components/molekul/finalSignUp";
 
 const FinalLandingPage = () => {
-  const signInDiv = useRef(null) as RefObject<HTMLDivElement>;
   const containerDiv = useRef(null) as RefObject<HTMLDivElement>;
-  const scrollToSignIn = () => {
-    signInDiv.current?.scrollIntoView({ block: "start", behavior: "smooth" });
-  };
-  const signUpDiv = useRef(null) as RefObject<HTMLDivElement>;
 
-  const scrollToSignUp = () => {
-    signUpDiv.current?.scrollIntoView({ block: "start", behavior: "smooth" });
-  };
+  // const signInDiv = useRef(null) as RefObject<HTMLDivElement>;
+  // const scrollToSignIn = () => {
+  //   signInDiv.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+  // };
+
+  // const signUpDiv = useRef(null) as RefObject<HTMLDivElement>;
+  // const scrollToSignUp = () => {
+  //   signUpDiv.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+  // };
 
   return (
     <Container className="sign-in-mode" ref={containerDiv}>

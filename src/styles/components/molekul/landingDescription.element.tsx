@@ -33,11 +33,37 @@ export const DescriptionContainer = Styled.div`
     
     @media screen and (max-width: 992px){
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
-        transform: translateY(30%);
+        transform: translate(20%,25%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(-110%,30%);
+        transform: translate(120%,25%);
+      }
+
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(-120%,-25%);
+      }
+
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(-20%,-25%);
+      }
+    }
+
+    @media screen and (max-width: 720px){
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(0%,25%);
+      }
+
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
+        transform: translate(0%,-75%);
+      }
+
+      ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(0%,145%);
+      }
+
+      ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
+        transform: translate(0%,45%);
       }
     }
 `;
@@ -56,6 +82,10 @@ export const ContentWrapper = Styled.div`
       pointer-events: none;
       visibility: hidden;
       transform: translateX(110%);
+      
+      @media screen and (max-width: 720px){
+        transform: translateY(145%);
+      }
     }
 
     ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
@@ -63,6 +93,10 @@ export const ContentWrapper = Styled.div`
       pointer-events: none;
       visibility: hidden;
       transform: translateX(-110%);
+
+      @media screen and (max-width: 720px){
+        transform: translateY(-75%);
+      }
     }
 `;
 
@@ -71,13 +105,23 @@ export const DescriptionH3 = Styled.h3`
   line-height: 1;
   font-size: 1.5rem;
   padding: 5px 0;
+
+  @media screen and (max-width:992px){
+    padding: 2.5px 0;
+    font-size: 1.25rem;
+  }
 `;
 
 export const DescriptionP = Styled.p`
   text-align: center;
   max-width: 450px;
-  font-size: 15px;
+  font-size: 1rem;
   padding: 20px 0;
+
+  @media screen and (max-width:992px){
+    padding: 5px 0;
+    font-size: 0.85rem;
+  }
 `;
 
 export const ImgBox = Styled.div`
@@ -93,14 +137,14 @@ export const ImgBox = Styled.div`
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      transform: translateX(110%);
+      transform: translateX(-120%);
     }
 
     ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      transform: translateX(-110%);
+      transform: translateX(120%);
     }
 
     @media screen and (max-width: 720px){
@@ -113,4 +157,8 @@ export const ImgBox = Styled.div`
 export const Image = Styled.img`
     width: 75%;
     height: auto;
+
+    @media screen and (max-width: 992px){
+      width: 45%;
+    }
 `;
