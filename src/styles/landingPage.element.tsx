@@ -46,7 +46,7 @@ export const Container = Styled.div`
         clip-path: circle(400px at 50% -35%);
       }
 
-      @media screen and (min-height: 860px){
+      @media screen and (min-height: 820px){
         :before {
           clip-path: circle(500px at 50% 130%);
         }

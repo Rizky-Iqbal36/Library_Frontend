@@ -66,7 +66,7 @@ export const DescriptionContainer = Styled.div`
         transform: translate(0%,45%);
       }
 
-      @media screen and (min-height: 860px){
+      @media screen and (min-height: 820px){
         ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
           transform: translate(0%,-10%);
         }
