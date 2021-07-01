@@ -156,16 +156,19 @@ export const InputValue = Styled.input`
   }
 `;
 
-export const SocialText = Styled.p`
-  padding: 7px 0;
-  font-size: 15px;
-  color: #fff;
-  text-align: center;
+interface IDescText {
+  textColor?: string;
+}
+export const DescText = Styled.p<IDescText>((props) => ({
+  color: props.textColor || "#fff",
+  textAlign: "center",
+  fontSize: "15px",
+  padding: "7px 0",
 
-  @media screen and (max-width: 992px){
-    font-size: 13px;
-  }
-`;
+  "@media screen and (max-width: 992px)": {
+    fontSize: "13px",
+  },
+}));
 
 export const SocialMedia = Styled.div`
   display: flex;

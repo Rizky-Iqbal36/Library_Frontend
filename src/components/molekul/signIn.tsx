@@ -1,15 +1,5 @@
-import React from "react";
-import {
-  AuthForm,
-  InputField,
-  InputValue,
-  LogoInput,
-  SocialIcon,
-  SocialMedia,
-  SocialText,
-  Title,
-} from "@root/styles/components/molekul/form.element";
-import { Button } from "@styles/components/atom/button.element";
+import React, { RefObject } from "react";
+import { useMutation } from "react-query";
 import {
   FaUser,
   FaLock,
@@ -18,40 +8,148 @@ import {
   FaGoogle,
   FaLinkedin,
 } from "react-icons/fa";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
-const SignIn = () => {
+import { API } from "@root/config/api";
+import {
+  FormSectionWrapper,
+  FormContentWrapper,
+  AuthForm,
+  AuthWrapper,
+  InputField,
+  InputValue,
+  LogoInput,
+  SocialIcon,
+  SocialMedia,
+  Title,
+  DescText,
+} from "@root/styles/components/molekul/form.element";
+import {
+  DescriptionContainer,
+  ContentWrapper,
+  DescriptionH3,
+  DescriptionP,
+  Image,
+  ImgBox,
+} from "@styles/components/molekul/landingDescription.element";
+import { Button, OrdinaryButton } from "@styles/components/atom/button.element";
+import SignInImage from "@assets/images/book_lover.svg";
+
+interface ISignInPage {
+  containerDiv: RefObject<HTMLDivElement>;
+}
+
+const SignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
+  const SignUpMode = () => {
+    containerDiv.current?.classList.remove("sign-in-mode");
+    containerDiv.current?.classList.add("sign-up-mode");
+  };
+
+  const { handleSubmit, getFieldProps, errors, touched } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .required("Email required")
+        .email("invalid format email!"),
+      password: Yup.string().required("Password Required").min(8),
+    }),
+    onSubmit: (values) => {
+      signInAction(values);
+    },
+  });
+
+  const [signInAction, { isLoading, error }]: any = useMutation(
+    async (values) => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const body = JSON.stringify(values);
+      try {
+        const res = await API.post("/auth/login", body, config);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  );
+
   return (
-    <AuthForm>
-      <Title>Sign in</Title>
-      <InputField>
-        <LogoInput>
-          <FaUser />
-        </LogoInput>
-        <InputValue type="text" placeholder="Username" />
-      </InputField>
-      <InputField>
-        <LogoInput>
-          <FaLock />
-        </LogoInput>
-        <InputValue type="password" placeholder="Password" />
-      </InputField>
-      <Button type="submit">Login</Button>
-      <SocialText>Or Sign in with social platforms</SocialText>
-      <SocialMedia>
-        <SocialIcon href="#">
-          <FaFacebookSquare />
-        </SocialIcon>
-        <SocialIcon href="#">
-          <FaTwitter />
-        </SocialIcon>
-        <SocialIcon href="#">
-          <FaGoogle />
-        </SocialIcon>
-        <SocialIcon href="#">
-          <FaLinkedin />
-        </SocialIcon>
-      </SocialMedia>
-    </AuthForm>
+    <FormSectionWrapper className="sign-in">
+      <FormContentWrapper>
+        <AuthWrapper>
+          <AuthForm onSubmit={handleSubmit}>
+            <Title>Sign in</Title>
+            {/* <h1>{`width: ${screenWidth} \n height: ${screenHeight}`}</h1> */}
+            <InputField>
+              <LogoInput>
+                <FaUser />
+              </LogoInput>
+              <InputValue
+                type="email"
+                placeholder="Email"
+                {...getFieldProps("email")}
+              />
+            </InputField>
+            {touched.email && errors.email ? (
+              <DescText textColor={"red"}>{errors.email}</DescText>
+            ) : null}
+            <InputField>
+              <LogoInput>
+                <FaLock />
+              </LogoInput>
+              <InputValue
+                type="password"
+                placeholder="Password"
+                {...getFieldProps("password")}
+              />
+            </InputField>
+            {touched.password && errors.password ? (
+              <DescText textColor={"red"}>{errors.password}</DescText>
+            ) : null}
+            <Button type="submit">Login</Button>
+            <DescText>Or Sign in with social platforms</DescText>
+            <SocialMedia>
+              <SocialIcon href="#">
+                <FaFacebookSquare />
+              </SocialIcon>
+              <SocialIcon href="#">
+                <FaTwitter />
+              </SocialIcon>
+              <SocialIcon href="#">
+                <FaGoogle />
+              </SocialIcon>
+              <SocialIcon href="#">
+                <FaLinkedin />
+              </SocialIcon>
+            </SocialMedia>
+          </AuthForm>
+        </AuthWrapper>
+        <DescriptionContainer>
+          <ContentWrapper>
+            <DescriptionH3>New here ?</DescriptionH3>
+            <DescriptionP>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </DescriptionP>
+            <OrdinaryButton
+              onClick={() => {
+                SignUpMode();
+              }}
+            >
+              Sign Up
+            </OrdinaryButton>
+          </ContentWrapper>
+          <ImgBox>
+            <Image src={SignInImage} />
+          </ImgBox>
+        </DescriptionContainer>
+      </FormContentWrapper>
+    </FormSectionWrapper>
   );
 };
 

@@ -147,14 +147,14 @@ export const ImgBox = Styled.div`
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      transform: translateX(-120%);
+      transform: translateX(120%);
     }
 
     ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
       opacity: 0;
       pointer-events: none;
       visibility: hidden;
-      transform: translateX(120%);
+      transform: translateX(-120%);
     }
 
     @media screen and (max-width: 720px){

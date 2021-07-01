@@ -1,15 +1,17 @@
 import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import "./App.css";
 // import Scratch from "@pages/scratch";
-// import LandingPage from "./pages/landingPage";
-import FinalLandingPage from "@pages/finalLandingPage";
+import LandingPage from "@root/pages/landingPage";
+
 function App() {
   return (
-    <>
-      <FinalLandingPage />
-      {/* <LandingPage /> */}
-      {/* <Scratch /> */}
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

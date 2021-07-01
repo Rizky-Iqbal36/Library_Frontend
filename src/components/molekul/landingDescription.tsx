@@ -1,4 +1,3 @@
-// import React, { useState, RefObject } from "react";
 import React, { RefObject } from "react";
 import {
   DescriptionContainer,
