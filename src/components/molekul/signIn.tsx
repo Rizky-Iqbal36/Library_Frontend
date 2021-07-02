@@ -1,4 +1,5 @@
-import React, { RefObject } from "react";
+import React, { RefObject, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { useMutation } from "react-query";
 import {
   FaUser,
@@ -11,7 +12,9 @@ import {
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { API } from "@root/config/api";
+//custom module
+import { userContext } from "@root/context/userContext";
+import { API, setAuthToken } from "@root/config/api";
 import {
   FormSectionWrapper,
   FormContentWrapper,
@@ -45,16 +48,20 @@ const SignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
     containerDiv.current?.classList.remove("sign-in-mode");
     containerDiv.current?.classList.add("sign-up-mode");
   };
+  const [state, dispatch] = useContext(userContext);
+  const history = useHistory();
 
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
-      email: "",
+      // email: "",
+      username: "",
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .required("Email required")
-        .email("invalid format email!"),
+      // email: Yup.string()
+      //   .required("Email required")
+      //   .email("invalid format email!"),
+      username: Yup.string().required("Username Required").min(3),
       password: Yup.string().required("Password Required").min(8),
     }),
     onSubmit: (values) => {
@@ -72,6 +79,11 @@ const SignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
       const body = JSON.stringify(values);
       try {
         const res = await API.post("/auth/login", body, config);
+        state.payload = res.data;
+        state.status = "LOGIN_SUCCESS";
+        dispatch(state);
+        setAuthToken(res.data.token);
+        return history.push(`/userhome`);
       } catch (err) {
         console.log(err);
       }
@@ -90,6 +102,19 @@ const SignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
                 <FaUser />
               </LogoInput>
               <InputValue
+                type="text"
+                placeholder="Username"
+                {...getFieldProps("username")}
+              />
+            </InputField>
+            {touched.username && errors.username ? (
+              <DescText textColor={"red"}>{errors.username}</DescText>
+            ) : null}
+            {/* <InputField>
+              <LogoInput>
+                <FaUser />
+              </LogoInput>
+              <InputValue
                 type="email"
                 placeholder="Email"
                 {...getFieldProps("email")}
@@ -97,7 +122,7 @@ const SignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
             </InputField>
             {touched.email && errors.email ? (
               <DescText textColor={"red"}>{errors.email}</DescText>
-            ) : null}
+            ) : null} */}
             <InputField>
               <LogoInput>
                 <FaLock />
@@ -111,7 +136,7 @@ const SignIn: React.FC<ISignInPage> = ({ containerDiv }) => {
             {touched.password && errors.password ? (
               <DescText textColor={"red"}>{errors.password}</DescText>
             ) : null}
-            <Button type="submit">Login</Button>
+            <Button type="submit">{isLoading ? "Loading..." : "Login"}</Button>
             <DescText>Or Sign in with social platforms</DescText>
             <SocialMedia>
               <SocialIcon href="#">
