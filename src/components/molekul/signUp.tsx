@@ -1,6 +1,7 @@
-import React, { RefObject, useState } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useMutation } from "react-query";
-import { API } from "@root/config/api";
+import { API, setAuthToken } from "@root/config/api";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
@@ -11,10 +12,11 @@ import {
   FaGoogle,
   FaLinkedin,
 } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
-//custom module
-import AlertModal from "@root/components/atom/alertModal";
-import { PAlert } from "@styles/components/atom/alertModal";
+import { userContext } from "@root/context/userContext";
+import { ActionLoading } from "@components/atom/loading";
+import AlertModal from "@components/atom/alertModal";
 import {
   AuthForm,
   AuthWrapper,
@@ -27,7 +29,7 @@ import {
   SocialMedia,
   DescText,
   Title,
-} from "@root/styles/components/molekul/form.element";
+} from "@styles/components/molekul/form.element";
 import {
   DescriptionContainer,
   ContentWrapper,
@@ -39,27 +41,29 @@ import {
 import { Button, OrdinaryButton } from "@styles/components/atom/button.element";
 import SignUpImage from "@assets/images/book_reading.svg";
 
-interface ISignUpPage {
-  containerDiv: RefObject<HTMLDivElement>;
-}
+import { IAuthPage, IErrMessage } from "@root/interfaces";
 
-const SignUp: React.FC<ISignUpPage> = ({ containerDiv }) => {
+const SignUp: React.FC<IAuthPage> = ({ containerDiv }) => {
   const SignInMode = () => {
     containerDiv.current?.classList.remove("sign-up-mode");
     containerDiv.current?.classList.add("sign-in-mode");
   };
+  const [errorMsg, setErrorMsg] = useState<IErrMessage>();
   const [showAlert, setShowAlert] = useState(false);
+  const [state, dispatch] = useContext(userContext);
+  const history = useHistory();
+
   const { handleSubmit, getFieldProps, errors, touched } = useFormik({
     initialValues: {
-      // email: "",
-      username: "",
+      email: "",
+      userName: "",
       password: "",
     },
     validationSchema: Yup.object({
-      // email: Yup.string()
-      //   .required("Email required")
-      //   .email("Invalid format email!"),
-      username: Yup.string().required("Username Required").min(3),
+      email: Yup.string()
+        .required("Email required")
+        .email("Invalid format email!"),
+      userName: Yup.string().required("Username Required").min(3),
       password: Yup.string().required("Password Required").min(8),
     }),
     onSubmit: (values) => {
@@ -67,23 +71,25 @@ const SignUp: React.FC<ISignUpPage> = ({ containerDiv }) => {
     },
   });
 
-  const [signUpAction, { isLoading, error }]: any = useMutation(
-    async (values) => {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const body = JSON.stringify(values);
-      try {
-        const res = await API.post("/auth/register", body, config);
-        console.log(res.data);
-        // setShowAlert(true);
-      } catch (err) {
-        console.log(err);
-      }
+  const [signUpAction, { isLoading }]: any = useMutation(async (values) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify(values);
+    try {
+      const res = await API.post("/auth/register", body, config);
+      state.payload = res.data.result;
+      state.status = "REGISTER_USER";
+      dispatch(state);
+      setAuthToken(res.data.result.token);
+      return history.push(`/userhome`);
+    } catch (err: any) {
+      setErrorMsg(err.response.data.errors);
+      setShowAlert(true);
     }
-  );
+  });
   return (
     <FormSectionWrapper className="sign-up">
       <FormContentWrapper>
@@ -116,13 +122,13 @@ const SignUp: React.FC<ISignUpPage> = ({ containerDiv }) => {
               <InputValue
                 type="text"
                 placeholder="Username"
-                {...getFieldProps("username")}
+                {...getFieldProps("userName")}
               />
             </InputField>
-            {touched.username && errors.username ? (
-              <DescText textColor={"red"}>{errors.username}</DescText>
+            {touched.userName && errors.userName ? (
+              <DescText textColor={"red"}>{errors.userName}</DescText>
             ) : null}
-            {/* <InputField>
+            <InputField>
               <LogoInput>
                 <MdEmail />
               </LogoInput>
@@ -131,10 +137,10 @@ const SignUp: React.FC<ISignUpPage> = ({ containerDiv }) => {
                 placeholder="Email"
                 {...getFieldProps("email")}
               />
-            </InputField> 
+            </InputField>
             {touched.email && errors.email ? (
               <DescText textColor={"red"}>{errors.email}</DescText>
-            ) : null} */}
+            ) : null}
             <InputField>
               <LogoInput>
                 <FaLock />
@@ -149,9 +155,11 @@ const SignUp: React.FC<ISignUpPage> = ({ containerDiv }) => {
               <DescText textColor={"red"}>{errors.password}</DescText>
             ) : null}
             <Button type="submit">
-              {isLoading ? "Loading..." : "Register"}
+              {isLoading ? <ActionLoading /> : "Register"}
             </Button>
-            <DescText>Or Sign up with social platforms</DescText>
+            <DescText padding={"10px 0"}>
+              Or Sign up with social platforms
+            </DescText>
             <SocialMedia>
               <SocialIcon href="#">
                 <FaFacebookSquare />
@@ -168,13 +176,11 @@ const SignUp: React.FC<ISignUpPage> = ({ containerDiv }) => {
             </SocialMedia>
           </AuthForm>
         </AuthWrapper>
-        {/* <AlertModal show={showAlert} onHide={() => setShowAlert(false)}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <PAlert>Registration successfully carried out</PAlert>
-            <PAlert>please login using your credentials</PAlert>
-          </div>
-        </AlertModal> */}
       </FormContentWrapper>
+      <AlertModal show={showAlert} onHide={() => setShowAlert(false)}>
+        <p>{errorMsg?.flag}</p>
+        <p>{errorMsg?.message}</p>
+      </AlertModal>
     </FormSectionWrapper>
   );
 };

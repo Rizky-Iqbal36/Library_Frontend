@@ -79,7 +79,6 @@ export const ContentBox = Styled.div`
     height: 100px;
     text-align: center;
     transition: 1s;
-    z-index: 10;
 
     ${Card}:hover & {
         height: 210px;

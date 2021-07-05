@@ -64,7 +64,6 @@ export const FormWrapper = Styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    z-index: 0;
 `;
 
 export const SectionContainer = Styled.div`

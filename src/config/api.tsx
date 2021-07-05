@@ -6,5 +6,5 @@ export const setAuthToken = (token: any) => {
 };
 
 export const API = axios.create({
-  baseURL: "http://localhost:3001/api/",
+  baseURL: "http://localhost:3001/api/v2",
 });

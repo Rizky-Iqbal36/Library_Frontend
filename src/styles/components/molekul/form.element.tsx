@@ -14,14 +14,22 @@ export const FormContentWrapper = Styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    position: relative;
 
+    ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
+      z-index: 4;
+    }
+    ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
+      z-index: 4;
+    }
+    
     @media screen and (max-width: 992px){
       flex-direction: column;
     }
 `;
 
 export const AuthWrapper = Styled.div`
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -31,29 +39,34 @@ export const AuthWrapper = Styled.div`
 
     ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
       transform: translateX(150%);
+      opacity: 0;
+      visibility: hidden;
       transition-delay: 0.5s;
     }
     
     ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
       transform: translateX(-150%);
+      opacity: 0;
+      visibility: hidden;
       transition-delay: 0.5s;
     }
 
     @media screen and (max-width: 992px){
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(29%,28%);
+        transform: translate(55%,40%);
       }
 
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(129%,28%);
+        transform: translate(150%,40%);
       }
 
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(-29%,-28%);
+        transform: translate(-55%,-30%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(-129%,-28%);
+        transition-delay: 0.4s;
+        transform: translate(-150%,-30%);
       }
     }
 
@@ -89,7 +102,6 @@ export const AuthWrapper = Styled.div`
 
 export const AuthForm = Styled.form`
     top: 0;
-    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -143,13 +155,15 @@ export const LogoInput = Styled.div`
 `;
 
 export const InputValue = Styled.input`
-  background: none;
+  position: relative;
   outline: none;
   border: none;
   line-height: 1;
   font-weight: 600;
   font-size: 20px;
   color: #333;
+  z-index: 4;
+  width: 90%;
 
   @media screen and (max-width: 992px){
     font-size: 15px;
@@ -158,12 +172,14 @@ export const InputValue = Styled.input`
 
 interface IDescText {
   textColor?: string;
+  padding?: string;
 }
 export const DescText = Styled.p<IDescText>((props) => ({
   color: props.textColor || "#fff",
   textAlign: "center",
   fontSize: "15px",
-  padding: "7px 0",
+  padding: props.padding || "0",
+  height: "0",
 
   "@media screen and (max-width: 992px)": {
     fontSize: "13px",
@@ -188,6 +204,7 @@ export const SocialIcon = Styled.a`
   text-decoration: none;
   font-size: 17px;
   transition: 0.3s;
+  z-index: 4;
 
   &:hover {
     color: #4481eb;

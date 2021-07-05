@@ -37,6 +37,7 @@ const reducer = (props: authState) => {
         user: null,
         loading: false,
       };
+    case "REGISTER_USER":
     case "LOGIN_SUCCESS":
       localStorage.setItem("token", props.payload.token);
       return {
@@ -44,6 +45,7 @@ const reducer = (props: authState) => {
         loading: false,
       };
     case "LOGIN_ADMIN":
+      localStorage.setItem("token", props.payload.token);
       return {
         isAdmin: true,
         loading: false,

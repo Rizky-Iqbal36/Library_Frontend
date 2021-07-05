@@ -9,7 +9,6 @@ export const DescriptionWrapper = Styled.div`
     flex-direction: row;
     justify-content: center;
     align-items:center;
-    z-index: 1;
     width:100%;
     height: 100%;
 
@@ -20,7 +19,7 @@ export const DescriptionWrapper = Styled.div`
 
 export const DescriptionContainer = Styled.div`
     /* position: relative; */
-    width: 100%;
+    width: 50%;
     height: 100%;
     top: 0;
     right: 0;
@@ -28,30 +27,31 @@ export const DescriptionContainer = Styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
     transition: all 0.75s ease-in-out;
+    z-index: 2;
     
     @media screen and (max-width: 992px){
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(20%,25%);
+        transform: translate(50%,25%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(120%,25%);
+        transform: translate(350%,25%);
       }
 
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(-120%,-25%);
+        transform: translate(-300%,-25%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(-20%,-25%);
+        transform: translate(-50%,-25%);
       }
     }
 
     @media screen and (max-width: 720px){
+      width: 100%;
       ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
-        transform: translate(0%,-25%);
+        transform: translate(0%,-5%);
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-up &{
@@ -63,18 +63,8 @@ export const DescriptionContainer = Styled.div`
       }
 
       ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
-        transform: translate(0%,85%);
+        transform: translate(0%,70%);
       }
-
-      /* @media screen and (min-height: 820px){
-        ${Container}.sign-up-mode ${FormSectionWrapper}.sign-up &{
-          transform: translate(0%,-10%);
-        }
-
-        ${Container}.sign-in-mode ${FormSectionWrapper}.sign-in &{
-          transform: translate(0%,65%);
-        }
-      } */
     }
 `;
 
@@ -135,7 +125,6 @@ export const DescriptionP = Styled.p`
 `;
 
 export const ImgBox = Styled.div`
-    z-index: 2;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -167,8 +156,9 @@ export const ImgBox = Styled.div`
 export const Image = Styled.img`
     width: 75%;
     height: auto;
+    z-index: 2;
 
     @media screen and (max-width: 992px){
-      width: 45%;
+      width: 75%;
     }
 `;

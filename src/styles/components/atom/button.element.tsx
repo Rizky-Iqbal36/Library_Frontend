@@ -15,6 +15,7 @@ export const Button = Styled.button`
   transition: all 0.2s ease-in-out;
   border-style: solid;
   border-width: thin;
+  z-index: 4;
 
   &:hover {
     background-color: transparent;
